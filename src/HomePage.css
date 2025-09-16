@@ -1,0 +1,712 @@
+/* Base styles */
+:root {
+  --dark-bg: #0c0c16;
+  --dark-secondary: #141428;
+  --text: #e0e0e0;
+  --text-secondary: #a0a0a0;
+  --primary: #3b82f6;
+  --primary-dark: #2563eb;
+  --purple: #8b5cf6;
+  --cyan: #06b6d4;
+  --glow-color: rgba(59, 130, 246, 0.5);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 5px rgba(59, 130, 246, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.8); }
+  100% { box-shadow: 0 0 5px rgba(59, 130, 246, 0.5); }
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
+body {
+  margin: 0;
+  background-color: var(--dark-bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  overflow-x: hidden;
+  overflow-y: auto; /* Ensure vertical scrolling is enabled */
+}
+
+.app {
+  min-height: 100vh;
+  z-index: 5;
+  position: relative;
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Button styles */
+.btn {
+  padding: 0.5rem 1rem;
+  z-index: 10;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s;
+}
+
+.btn.primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn.primary:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.btn.secondary {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text);
+}
+
+.btn.secondary:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+.btn.small {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  z-index: 10;
+}
+
+/* Hero section */
+.hero {
+  min-height: 100vh; /* Changed back to 100vh */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: visible;
+  padding: 5rem 1rem 2rem 1rem;
+  padding-top: 270vh; /* Fixed - was 150vh which was causing issues */
+}
+
+.header {
+  position: fixed; /* Keep fixed for sticky header */
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  background-color: rgba(12, 12, 22, 0.9);
+  height: 60px; /* Fixed height */
+  animation: fadeIn 0.5s ease-out;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary);
+  font-weight: bold;
+  font-size: 1.25rem;
+  animation: slideInRight 0.5s ease-out;
+}
+
+.nav {
+  display: flex; /* Changed from none to ensure it's visible */
+  gap: 2rem;
+  animation: fadeIn 0.8s ease-out;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    display: none;
+  }
+}
+
+.nav a {
+  color: var(--text);
+  text-decoration: none;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.nav a:hover {
+  color: var(--primary);
+}
+
+.nav a:after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary);
+  transition: width 0.3s;
+}
+
+.nav a:hover:after {
+  width: 100%;
+}
+
+.hero-content {
+  max-width: 48rem;
+  text-align: center;
+  z-index: 10;
+  margin-bottom: 3rem;
+  animation: slideInUp 0.8s ease-out;
+}
+/* 
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--text);
+  text-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+  background: linear-gradient(to right, var(--primary), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+} */
+
+@media (min-width: 768px) {
+  .hero-content h1 {
+    font-size: 3.75rem;
+  }
+}
+
+.hero-content p {
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+  color: var(--text-secondary);
+  animation-delay: 0.2s;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  animation-delay: 0.4s;
+}
+
+@media (min-width: 640px) {
+  .button-group {
+    flex-direction: row;
+  }
+}
+
+/* Hero demo */
+.hero-demo {
+  width: 100%;
+  max-width: 800px;
+  z-index: 10;
+  margin-top: 2rem;
+  animation: slideInUp 1s ease-out;
+  animation-delay: 0.2s;
+  animation-fill-mode: both;
+}
+
+.code-window {
+  background-color: var(--dark-secondary);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: glow 3s infinite alternate;
+}
+
+.code-header {
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 0.75rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.code-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #ff5f56;
+}
+
+.code-dot:nth-child(2) {
+  background-color: #ffbd2e;
+}
+
+.code-dot:nth-child(3) {
+  background-color: #27c93f;
+}
+
+.code-content {
+  padding: 1rem;
+}
+
+.code-input {
+  padding: 0.75rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 0.375rem;
+  margin-bottom: 1rem;
+  color: var(--text);
+  border-left: 3px solid var(--purple);
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 3.5s steps(40, end), blink 0.75s step-end infinite;
+  border-right: 3px solid var(--primary);
+}
+
+.code-output {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 0.375rem;
+  padding: 0.75rem;
+  color: #4ade80;
+  font-family: monospace;
+  position: relative;
+  border-left: 3px solid var(--primary);
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards;
+  animation-delay: 3s;
+}
+
+.code-output pre {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+/* Features section */
+.features, .demo {
+  padding: 3rem 1rem;
+  max-width: 75rem;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  animation: slideInUp 0.8s ease-out;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+  text-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+  position: relative;
+  display: inline-block;
+}
+
+.section-header h2:after {
+  content: '';
+  position: absolute;
+  width: 50%;
+  height: 3px;
+  background: linear-gradient(to right, var(--primary), transparent);
+  bottom: -10px;
+  left: 25%;
+}
+
+.section-header p {
+  max-width: 32rem;
+  margin: 0 auto;
+  color: var(--text-secondary);
+}
+
+.feature-grid {
+  display: grid;
+  gap: 2rem;
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards;
+  animation-delay: 0.2s;
+}
+
+@media (min-width: 768px) {
+  .feature-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Add individual animations to feature cards */
+.feature-card {
+  background-color: var(--dark-secondary);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.feature-grid .feature-card:nth-child(1) { animation-delay: 0.2s; }
+.feature-grid .feature-card:nth-child(2) { animation-delay: 0.4s; }
+.feature-grid .feature-card:nth-child(3) { animation-delay: 0.6s; }
+.feature-grid .feature-card:nth-child(4) { animation-delay: 0.8s; }
+.feature-grid .feature-card:nth-child(5) { animation-delay: 1s; }
+.feature-grid .feature-card:nth-child(6) { animation-delay: 1.2s; }
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
+}
+
+.feature-card:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent 50%, rgba(59, 130, 246, 0.1) 100%);
+  z-index: 0;
+}
+
+/* Feature Icon */
+.feature-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.1);
+  position: relative;
+  margin-bottom: 1rem;
+  transition: transform 0.3s;
+}
+
+.feature-card:hover .feature-icon {
+  transform: scale(1.1);
+}
+
+/* Color Variants - Simplified */
+.feature-icon.blue {
+  background-color: rgba(59, 130, 246, 0.2);
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+}
+
+.feature-icon.purple {
+  background-color: rgba(139, 92, 246, 0.2);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+}
+
+.feature-icon.cyan {
+  background-color: rgba(34, 211, 238, 0.2);
+  box-shadow: 0 0 15px rgba(34, 211, 238, 0.3);
+}
+
+.feature-icon.orange {
+  background-color: rgba(255, 165, 0, 0.2);
+  box-shadow: 0 0 15px rgba(255, 165, 0, 0.3);
+}
+
+.feature-icon.red {
+  background-color: rgba(255, 0, 0, 0.2);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+.feature-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s;
+}
+
+.feature-card:hover h3 {
+  color: var(--primary);
+}
+
+.feature-card p {
+  color: var(--text-secondary);
+  position: relative;
+  z-index: 1;
+}
+
+/* Demo Section */
+.demo-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  opacity: 0;
+  animation: slideInUp 0.8s ease-out forwards;
+  animation-delay: 0.2s;
+}
+
+.demo-card {
+  background-color: var(--dark-secondary);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.demo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+textarea {
+  width: 100%;
+  background-color: var(--dark-bg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.375rem;
+  padding: 0.75rem;
+  color: var(--text);
+  font-family: inherit;
+  box-sizing: border-box;
+  resize: vertical;
+  min-height: 100px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+.code-editor {
+  background-color: var(--dark-bg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.375rem;
+  overflow: hidden;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.code-editor:hover {
+  border-color: var(--primary);
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+}
+
+.editor-header {
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: A1px solid rgba(255, 255, 255, 0.1);
+}
+
+.editor-content {
+  padding: 1rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.editor-content pre {
+  margin: 0;
+  font-family: 'Fira Code', monospace;
+  line-height: 1.5;
+  font-size: 0.875rem;
+}
+
+/* Syntax highlighting */
+.keyword {
+  color: #f92672;
+}
+
+.function {
+  color: #66d9ef;
+}
+
+.string {
+  color: #a6e22e;
+}
+
+.number {
+  color: #ae81ff;
+}
+
+.comment {
+  color: #75715e;
+}
+
+/* Footer */
+footer {
+  background-color: var(--dark-bg);
+  padding: 2rem 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 10;
+  animation: fadeIn 1s ease-out;
+}
+
+.footer-content {
+  max-width: 75rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .footer-content {
+    flex-direction: row;
+  }
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary);
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .footer-logo {
+    margin-bottom: 0;
+  }
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+}
+
+.copyright {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+/* Add a scroll reveal class for scroll animations */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s, transform 0.6s;
+}
+
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Add these styles to your HomePage.css file */
+
+.feature-button-container {
+  margin-top: 1rem;
+  position: relative;
+  z-index: 20; /* Ensure buttons are above card effects */
+}
+
+.feature-btn {
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  background-color: var(--primary);
+  color: white;
+  font-weight: 500;
+  transition: all 0.3s;
+  cursor: pointer;
+  border: none;
+  position: relative;
+  z-index: 20; /* Higher z-index to ensure it's clickable */
+}
+
+.feature-btn:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+/* Fix for card hover effect potentially blocking clicks */
+.feature-card:hover .feature-button-container {
+  z-index: 30;
+}
+
+/* Make sure the after pseudo-element doesn't block the button */
+.feature-card:after {
+  pointer-events: none;
+}
+
+.glow-text {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 15px var(--glow-color);
+  margin-bottom: 0.5rem;
+}

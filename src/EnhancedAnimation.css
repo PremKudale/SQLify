@@ -1,0 +1,53 @@
+:root {
+    --particle-size: 4px;
+    --particle-color-1: #3b82f6;
+    --particle-color-2: #8b5cf6;
+    --particle-color-3: #06b6d4;
+    --animation-duration: 15s;
+  }
+  
+  .particle-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--dark-bg);
+    z-index: -1;
+    pointer-events: none;
+  }
+  
+  .particle {
+    position: absolute;
+    width: var(--particle-size);
+    height: var(--particle-size);
+    background: var(--particle-color-1);
+    border-radius: 50%;
+    animation: float var(--animation-duration) infinite linear;
+    opacity: 0.5;
+  }
+  
+  /* Random positioning */
+  .particle:nth-child(3n) {
+    background: var(--particle-color-2);
+  }
+  
+  .particle:nth-child(5n) {
+    background: var(--particle-color-3);
+  }
+  
+  .particle:nth-child(even) {
+    width: calc(var(--particle-size) * 1.5);
+    height: calc(var(--particle-size) * 1.5);
+  }
+  
+  @keyframes float {
+    from {
+      transform: translateY(0) translateX(0);
+    }
+    to {
+      transform: translateY(-100vh) translateX(calc(-50vw + 100vw * random()));
+    }
+  }
+  

@@ -1,0 +1,23 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+
+# Secrets
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Archives
+*.zip
+
+# Logs
+*.log
+

@@ -1,0 +1,404 @@
+/* Schema Component Specific Styles */
+.schema-app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  width: 100vw;
+}
+
+.schema-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.schema-editor-layout {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.schema-input-form-container {
+  flex: 1;
+  min-width: 400px;
+}
+
+.schema-result-container {
+  flex: 2;
+  min-width: 600px;
+}
+
+.schema-result {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.schema-result .schema-card-body {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 600px;
+}
+
+.schema-table-container {
+  margin-bottom: 2rem;
+}
+
+.schema-table-name {
+  color: var(--primary-color);
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+.schema-loading-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  color: var(--text-secondary);
+}
+
+.schema-animate-spin {
+  animation: schema-spin 1s linear infinite;
+}
+
+@keyframes schema-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.schema-card {
+  background-color: var(--background-light);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px var(--shadow-color);
+  overflow: hidden;
+  margin-bottom: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.schema-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px var(--shadow-color);
+}
+
+.schema-card-header {
+  background-color: rgba(45, 55, 72, 0.5);
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.schema-card-header h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.schema-card-body {
+  padding: 1.5rem;
+}
+
+.schema-form-group {
+  margin-bottom: 1.5rem;
+}
+
+.schema-form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.schema-input-field, .schema-textarea {
+  width: 100%;
+  padding: 0.875rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: rgba(27, 36, 52, 0.8);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.schema-input-field:focus, .schema-textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+}
+
+.schema-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.schema-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  font-size: 0.95rem;
+}
+
+.schema-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.schema-btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.schema-btn-primary:hover:not(:disabled) {
+  background-color: #5a49e3;
+}
+
+.schema-btn-secondary {
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.schema-btn-secondary:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.schema-glow-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.schema-glow-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),transparent);
+  transition: 0.5s;
+}
+
+.schema-glow-effect:hover::before {
+  left: 100%;
+}
+
+.schema-full-width {
+  width: 100%;
+}
+
+.schema-content {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #e2e8f0;
+}
+
+.schema-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  background-color: #1e293b;
+}
+
+.schema-table th {
+  background-color: #2d3748;
+  text-align: left;
+  padding: 0.75rem;
+  border: 1px solid #3a4559;
+}
+
+.schema-table td {
+  padding: 0.75rem;
+  border: 1px solid #3a4559;
+}
+
+.schema-table tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.schema-fk-relation {
+  color: #fd79a8;
+  font-style: italic;
+}
+
+.schema-pk-marker {
+  color: #00b894;
+  font-weight: bold;
+}
+
+.schema-export-buttons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.schema-tab-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+.schema-tab-btn {
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px 6px 0 0;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.schema-tab-btn.schema-tab-active {
+  color: var(--primary-color);
+  background-color: rgba(108, 92, 231, 0.1);
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.schema-tab-btn:hover:not(.schema-tab-active):not(:disabled) {
+  color: var(--text-primary);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.schema-tab-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.schema-export-output {
+  padding: 1rem;
+}
+
+.schema-code-block {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  background-color: rgba(15, 18, 24, 0.8);
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  white-space: pre-wrap;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.schema-copy-btn {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+}
+
+.schema-copy-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.schema-copy-feedback {
+  margin-left: 10px;
+  color: #4caf50;
+  font-weight: 500;
+}
+
+.schema-table-selector {
+  margin-bottom: 15px;
+}
+
+.schema-error-message {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background-color: rgba(255, 118, 117, 0.1);
+  border-left: 4px solid var(--error-color);
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  color: var(--error-color);
+}
+
+.schema-error-message svg {
+  margin-right: 0.5rem;
+  flex-shrink: 0;
+}
+
+.schema-page-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.schema-glow-text {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 15px var(--glow-color);
+  margin-bottom: 0.5rem;
+}
+
+.schema-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.schema-main-content {
+  flex: 1;
+  padding: 6rem 0 4rem;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+@media (max-width: 1200px) {
+  .schema-editor-layout {
+    flex-direction: column;
+  }
+  
+  .schema-input-form-container,
+  .schema-result-container {
+    min-width: 100%;
+  }
+}
+
+/* Shared CSS Variables */
+:root {
+  --primary-color: #6c5ce7;
+  --secondary-color: #a29bfe;
+  --accent-color: #fd79a8;
+  --background-dark: #0f1218;
+  --background-light: #1b2434;
+  --text-primary: #ffffff;
+  --text-secondary: #b8c6db;
+  --border-color: #2d3748;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --success-color: #00b894;
+  --error-color: #ff7675;
+  --glow-color: rgba(108, 92, 231, 0.6);
+  --blue-glow: rgba(74, 138, 244, 0.6);
+  --purple-glow: rgba(162, 155, 254, 0.6);
+  --orange-glow: rgba(253, 150, 68, 0.6);
+  --red-glow: rgba(255, 118, 117, 0.6);
+  --cyan-glow: rgba(0, 206, 201, 0.6);
+}
